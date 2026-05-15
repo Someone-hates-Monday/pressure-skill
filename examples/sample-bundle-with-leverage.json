@@ -1,0 +1,50 @@
+﻿{
+  "profile": {
+    "relation": "manager",
+    "scene_tags": [],
+    "reply_speed_hint": null,
+    "prefers": {},
+    "pain_points": [],
+    "praise_vs_critique_notes": null,
+    "pattern_tags": [],
+    "features": {},
+    "counterparty_notes": "节奏快、讨厌模糊承诺",
+    "user_leverage_notes": "手头另有更高优先级项目已排满本周",
+    "extra_context_notes": "领导更在意可预期的交付节奏而非单次通宵",
+    "user_purpose": "争取延期",
+    "locale": "zh",
+    "discipline_subfield": null,
+    "artefact_preferences_notes": null,
+    "counterparty_seniority": null
+  },
+  "readiness": {
+    "locale": "zh",
+    "level": "ok_with_gaps",
+    "summary": "可用作草稿：建议结合筹码与场外信息二次润色；回怼选项务必核对权力关系风险。（证据分层：minimal——少读心、多澄清；话术避免想当然。）",
+    "portrait_depth": "minimal",
+    "evidence_score": 20,
+    "portrait_depth_hint": "画像证据偏少（minimal）：意图只做试探性假设并写可推翻条件；话术禁止编造细节，只嵌入用户已提供事实。",
+    "missing_fields": [
+      "聊天记录片段，或对方人物侧写（至少一项，脱敏）",
+      "reply_speed_hint（对方回消息快慢的主观印象，可选但有助于画像）"
+    ],
+    "warnings": [],
+    "agent_next_steps": [
+      "若 level 为 thin：一次最多追问 2 个缺失项。",
+      "输出须显式使用画像中的筹码与场外信息，避免套话。",
+      "若用户选回怼（D）：复述风险 notes，对上级默认推荐软钉子版本。",
+      "证据分层 minimal：向导走短采集；意图与话术禁止过度读心。"
+    ],
+    "script_note": "bundle_local.py 产出结构化 JSON；意图推测与置信度由 Cursor Agent 结合 readiness 生成。"
+  },
+  "deflect": {
+    "reply_options": [
+      "收到。为确保质量，我想和您对齐一下优先级：我手头还有 A、B 两项在本周截止。这份材料您更希望我先保证哪部分的深度？其余部分我可以在周五前给出框架，下周一补齐细节，您看是否可行？",
+      "明白您的节点。按上次类似交付的经验，完整版大约需要 X 天。如果本周五前必须给到一版，我建议先交付核心数据与结论，附录与排版我放到下周二，这样风险更可控。"
+    ],
+    "rationale": "关系=manager：用“优先级对齐 + 分阶段交付”替代单纯拒绝，降低对抗感。",
+    "risk_notes": [
+      "若对方极度厌恶讨价还价，可缩短为单句承诺 + 一个具体时间点。"
+    ]
+  }
+}

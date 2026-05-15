@@ -1,0 +1,23 @@
+{"id":"deflect_manager_deadline","mode":"deflect","text":"今天下班前必须交完整版","profile":{"relation":"manager","counterparty_notes":"节奏快、讨厌模糊承诺","user_leverage_notes":"本周已排满两个高优项目","extra_context_notes":"领导更在意可预期节奏"},"target_signals":["周","下周","优先","先","后","建议"]}
+{"id":"push_peer_eta","mode":"push","text":"请他把接口联调结果今天给我","profile":{"relation":"peer","user_leverage_notes":"我后续发布卡在这个依赖","extra_context_notes":"今晚需要同步给测试同学"},"target_signals":["今天","预计","如果","先给","麻烦"]}
+{"id":"clap_peer_boundary","mode":"clap_back","text":"你又不是老板，别在群里催命","profile":{"relation":"peer","counterparty_notes":"喜欢在群里施压"},"target_signals":["说清楚","一次性","协作","别","请"]}
+{"id":"deflect_client_scope","mode":"deflect","text":"尽快把全部功能都做完，别留尾巴","profile":{"relation":"client","user_leverage_notes":"合同范围不含二期需求","extra_context_notes":"客户常临时加需求"},"target_signals":["范围","优先","建议","先","后","验收"]}
+{"id":"deflect_manager_asap","mode":"deflect","text":"ASAP给我最终版","profile":{"relation":"manager","counterparty_notes":"只看结果","user_leverage_notes":"质量风险在压缩测试"},"target_signals":["今天","明天","建议","先","风险"]}
+{"id":"push_report_slack","mode":"push","text":"让下属把周报今晚前补齐","profile":{"relation":"manager","user_leverage_notes":"我这边要做汇总上报","extra_context_notes":"下属最近拖延"},"target_signals":["今晚","今天","截止","麻烦","预计"]}
+{"id":"push_peer_dependency","mode":"push","text":"催设计稿定稿","profile":{"relation":"peer","user_leverage_notes":"开发已空转两天","extra_context_notes":"设计在并行项目"},"target_signals":["今天","明天","依赖","如果","先"]}
+{"id":"clap_peer_tone","mode":"clap_back","text":"你做事怎么这么慢","profile":{"relation":"peer","counterparty_notes":"说话冲"},"target_signals":["协作","说清楚","请","效率","一次性"]}
+{"id":"clap_manager_soft","mode":"clap_back","text":"你到底行不行？别耽误我","profile":{"relation":"manager","counterparty_notes":"压力下口不择言","user_leverage_notes":"项目关键路径在我这"},"target_signals":["不能接受","请","验收","标准","推进"]}
+{"id":"deflect_peer_deadline","mode":"deflect","text":"今晚必须一起加班弄完","profile":{"relation":"peer","user_leverage_notes":"我有家庭安排","extra_context_notes":"对方不吃硬"},"target_signals":["今晚","建议","先","如果","明天"]}
+{"id":"deflect_elder_email","mode":"deflect","text":"明天中午前把材料发我邮箱","profile":{"relation":"elder","counterparty_notes":"更认邮件留痕","user_leverage_notes":"需要内部评审一轮"},"target_signals":["明天","邮件","建议","先","框架"]}
+{"id":"push_client_milestone","mode":"push","text":"请甲方确认里程碑签字","profile":{"relation":"client","user_leverage_notes":"没签字不能开票回款","extra_context_notes":"财务在催"},"target_signals":["确认","今天","明天","麻烦","截止"]}
+{"id":"push_report_remind","mode":"push","text":"提醒下属更新进度表","profile":{"relation":"manager","user_leverage_notes":"老板晨会要看表","extra_context_notes":"下属常忘"},"target_signals":["今天","早上","麻烦","预计"]}
+{"id":"deflect_manager_weekend","mode":"deflect","text":"周末也要在线响应","profile":{"relation":"manager","user_leverage_notes":"劳动法与合同工时","extra_context_notes":"团队已在超负荷"},"target_signals":["周末","建议","先","范围","如果"]}
+{"id":"clap_client_boundary","mode":"clap_back","text":"你们服务太差了，别找借口","profile":{"relation":"client","counterparty_notes":"情绪化投诉"},"target_signals":["请","标准","推进","不能接受","对齐"]}
+{"id":"deflect_peer_scope_creep","mode":"deflect","text":"顺便把另一个小需求也做了吧","profile":{"relation":"peer","user_leverage_notes":"排期已满","extra_context_notes":"对方爱顺手加活"},"target_signals":["范围","优先","建议","先","如果"]}
+{"id":"push_peer_doc","mode":"push","text":"让对方补接口文档","profile":{"relation":"peer","user_leverage_notes":"联调被文档缺失卡住"},"target_signals":["今天","明天","麻烦","如果","先"]}
+{"id":"deflect_manager_data","mode":"deflect","text":"下班前把所有原始数据也交出来","profile":{"relation":"manager","user_leverage_notes":"数据脱敏流程要走一天","extra_context_notes":"合规不能跳"},"target_signals":["建议","先","后","风险","今天"]}
+{"id":"clap_peer_sarcasm","mode":"clap_back","text":"呵呵，你看着办","profile":{"relation":"peer","counterparty_notes":"阴阳怪气"},"target_signals":["说清楚","协作","一次性","请","效率"]}
+{"id":"deflect_client_quality","mode":"deflect","text":"先上线再说，别纠结质量","profile":{"relation":"client","user_leverage_notes":"线上事故责任条款","extra_context_notes":"客户要速度"},"target_signals":["风险","建议","先","验收","分阶段"]}
+{"id":"push_peer_review","mode":"push","text":"请同事 code review 今天完成","profile":{"relation":"peer","user_leverage_notes":"合并窗口今晚关闭"},"target_signals":["今天","麻烦","如果","预计","先"]}
+{"id":"deflect_manager_meeting","mode":"deflect","text":"马上来会议室对齐","profile":{"relation":"manager","user_leverage_notes":"手头线上故障在处理","extra_context_notes":"会议可改异步"},"target_signals":["建议","先","如果","邮件","时间"]}
+{"id":"clap_peer_blame","mode":"clap_back","text":"都是你的锅","profile":{"relation":"peer","counterparty_notes":"公开甩锅"},"target_signals":["协作","对事","请","说清楚","一次性"]}

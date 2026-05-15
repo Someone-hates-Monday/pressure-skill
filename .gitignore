@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.env
+*.db
+eval/rerank_weights.json
+eval/raw/casino/casino.json
+eval/cases_sourced.jsonl
+# Regenerate: py -3 scripts/build_casino_labels_from_annotations.py
+eval/cases_casino_labeled.jsonl
+# Local HF shards / parquet (see eval/DATA_SOURCES.md)
+data/*.parquet
+# Ad-hoc eval scratch from local runs
+eval/_*.json

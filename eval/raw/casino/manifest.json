@@ -1,0 +1,13 @@
+{
+  "source": "casino_naacl2021",
+  "source_url": "https://github.com/kushalchawla/CaSiNo",
+  "source_hf_dataset": "https://huggingface.co/datasets/kchawla123/casino",
+  "source_paper": "Chawla et al., CaSiNo, NAACL 2021",
+  "backend": "parquet",
+  "raw": "data/train-00000-of-00001.parquet",
+  "dialogue_limit": 0,
+  "utterance_cases": 11487,
+  "out": "eval/cases_sourced.jsonl",
+  "needs_review": true,
+  "train_note": "Not merged into train_rerank until target_signals annotated"
+}

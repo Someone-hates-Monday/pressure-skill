@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pressure-skill"
+version = "0.1.0"
+description = "沟通画像与压力场景下的得体回复建议（MVP）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "pressure.skill contributors" }]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+llm = ["litellm>=1.40"]
+dev = ["pytest>=8.0", "httpx>=0.27", "litellm>=1.40"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pressure_skill*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

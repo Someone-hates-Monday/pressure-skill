@@ -1,0 +1,3 @@
+id,mode,text,profile_json,target_signals_csv
+ext_001,deflect,"今天下班前必须交完整版","{""relation"":""manager"",""counterparty_notes"":""节奏快""}","今天,先,后,优先,建议"
+ext_002,push,"请同事今天给接口联调结果","{""relation"":""peer"",""user_leverage_notes"":""发布卡在接口""}","今天,预计,先给,ETA"

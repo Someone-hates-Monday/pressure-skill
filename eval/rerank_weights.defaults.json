@@ -1,0 +1,21 @@
+{
+  "min_len": 0.4,
+  "min_len_threshold": 24.0,
+  "time_anchor": 1.1,
+  "tradeoff": 1.0,
+  "acceptance_scope": 0.9,
+  "push_clear_ask": 1.0,
+  "deflect_negotiation": 1.0,
+  "clap_boundary": 0.8,
+  "clap_boundary_extra": 1.2,
+  "clarify_question": 0.9,
+  "relation_formality": 0.9,
+  "aggressive_penalty": -2.5,
+  "urgency_match": 0.6,
+  "note_hit_cap": 1.2,
+  "note_hit_unit": 0.25,
+  "directive_fit": 0.4,
+  "fast_turnaround_fit": 0.4,
+  "clap_formal_criteria": 0.7,
+  "deflect_meeting_async": 1.0
+}
