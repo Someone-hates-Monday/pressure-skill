@@ -1,6 +1,6 @@
 # integrations
 
-本仓库以 **`.cursor/skills/pressure-skill/`** 为技能唯一维护源（`SKILL.md` + `references/`）。
+本仓库以 **`.cursor/skills/pressure-skill/`** 为技能唯一维护源（`SKILL.md` + `references/`，含 **`wizard-full-flow.md`** 与多平台备忘 **`platform-wizard-notes.md`**）。
 
 跨 Agent 安装不放在此目录，而由脚本将上述文件夹复制到各产品用户目录：
 

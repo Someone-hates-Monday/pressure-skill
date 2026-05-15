@@ -20,11 +20,16 @@ Skill 形态上曾受 [colleague-skill](https://github.com/titanwings/colleague-
 
 [示例与 bundle](#示例与脱敏输出) · [Skill / 多平台安装](#多平台-skillcursor--claude-code--openclaw) · [快速开始](#快速开始) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md)
 
+便于站内外检索（技术向）：`pressure-skill`、`cursor`、`agent-skills`、`claude-code`、`openclaw`、`fastapi`、`workplace-communication`、`negotiation`、`reply-drafts`、`zh-en`、`offline-templates`。  
+便于中文检索（场景向）：**拒绝被压力**、**拒绝职场 PUA**、**反催办**、**不接锅**、**软拒绝**、**立边界**、**难沟通话术**、**催进度怎么回**、**需求太模糊**、**高情商回复草稿**。（**Git 本身没有「关键词」字段**；主要靠 GitHub **Topics / Description**、README、`pyproject.toml` 的 `keywords`、以及 Skill 的 `description`  frontmatter，详见 [GitHub 可发现性](#github-可发现性)。）
+
 <!--
 GitHub 仓库 About「Description」可粘贴（任选其一，注意约 350 字符上限）：
 
 中文：冰冷压力 → 温暖回复；立体攻防式沟通 + 你的超级嘴替。中英草稿 + Cursor Skill / FastAPI；无 Key 先跑模板。
+中文（含检索向，约 350 字内可截断）：拒绝被压力、拒绝职场 PUA；催办/模糊需求/不接锅 → 得体中英草稿。Cursor Agent Skill + FastAPI；无 Key 先跑模板。
 English: Cold pressure → warm, sendable replies. Layered comms playbook + your super mouthpiece. ZH/EN + Cursor skill + FastAPI; offline templates.
+English (searchy): Pushback, boundaries, anti-gaslighting vibes—turn vague pressure into sendable ZH/EN replies. Cursor skill + FastAPI; offline templates.
 
 中英拼一句：
 Turn icy deadlines into warm replies—layered workplace comms + your articulate stand-in. Cursor skill + FastAPI; templates first.
@@ -32,10 +37,14 @@ Turn icy deadlines into warm replies—layered workplace comms + your articulate
 
 ## 多平台 Skill（Cursor / Claude Code / OpenClaw）
 
-- **Cursor 向导**：本仓库已含 **`.cursor/skills/pressure-skill/`**；在 Cursor Agent 中启用 **`/pressure-skill`**，按 **`references/wizard-full-flow.md`** 分步收集画像与场景（技能入口见同目录 `SKILL.md`）。若要在**任意项目**里使用该技能，在仓库根执行安装脚本（下条）或见 [docs/skill-adapters.md](docs/skill-adapters.md)。  
+**向导**：全平台共用同一份 **`references/wizard-full-flow.md`**（画像 → 目的 → 场景 → 话术）；路径/触发方式/读文件工具/Python 工作目录差异见 **`references/platform-wizard-notes.md`**（与 `SKILL.md` 同技能包）。
+
+- **Cursor**：仓库内 **`.cursor/skills/pressure-skill/`**；Agent 中常用 **`/pressure-skill`**；协议见同目录 **`SKILL.md`**（先读 `wizard-full-flow.md`）。任意项目使用：在仓库根执行安装脚本（下条）或见 [docs/skill-adapters.md](docs/skill-adapters.md) **§0～§1**。  
+- **Claude Code**：安装到 **`~/.claude/skills/pressure-skill/`**（脚本见下）；启用 **pressure-skill** 后 **同一套向导**（先读 `wizard-full-flow.md`）。详见 [docs/skill-adapters.md](docs/skill-adapters.md) **§5**。  
+- **OpenClaw**：安装到 **`~/.openclaw/workspace/skills/pressure-skill/`**（以脚本与环境为准）；启用后 **同一套向导**。详见 **§5** 与 `platform-wizard-notes.md`。  
 - **只想试 CLI、不要向导**：在仓库根运行 **`bundle_local.py`** 的示例命令与参数说明见 **[examples/README.md](examples/README.md)**；终端乱码可设 `PYTHONIOENCODING=utf-8` 或 `chcp 65001`（Windows）。向导内是否调用脚本由 Agent 按 `wizard-full-flow.md` **§8** 判断，不必在 README 重复。
 
-- **完整说明**：[docs/skill-adapters.md](docs/skill-adapters.md)（路径约定、frontmatter 差异、排障）；**脚本索引**：[integrations/README.md](integrations/README.md)。
+- **完整说明**：[docs/skill-adapters.md](docs/skill-adapters.md)（多平台向导、路径约定、frontmatter 差异、排障）；**脚本索引**：[integrations/README.md](integrations/README.md)。
 - **一键安装（PowerShell，仓库根）**  
   - 仅 Cursor + 用户 `.agents`：`.\scripts\install_cursor_personal_skill.ps1`  
   - **全部目标**：`.\scripts\install_pressure_skill.ps1`（写入 `%USERPROFILE%\.cursor\skills`、`\.agents\skills`、**`\.claude\skills`**、**`\.openclaw\workspace\skills`** 下的 `pressure-skill/`）  
@@ -153,6 +162,56 @@ pytest
 1. **Phase 1（当前）**：手动 + 半自动画像、三场景 API、无 Key 模板回退。
 2. **Phase 2**：Streamlit 界面、聊天记录解析器（微信/企微/邮件片段）、SQLite 仅存摘要特征。
 3. **Phase 3**：场景标签（行业/文化）、社区策略库、编辑器插件。
+
+## GitHub 可发现性
+
+GitHub **没有无限多个「关键词输入框」**，但你可以在多个**互不相干、都会被搜索/展示用到的字段**里重复、互补地放检索词（中文适合放 **Description / README**；**Topics** 以英文、连字符为主更稳）。
+
+### 在网页上怎么设置（推荐顺序）
+
+1. 打开仓库 → 右上角 **About** 旁的 **⚙️（Edit repository details）**。  
+2. **Description**：粘贴 README 里 HTML 注释中的短简介（可优先用「含检索向」那条，注意约 **350 字符**上限）。  
+3. **Website**：填文档站、在线 Demo、或 README 锚点链接（没有可留空）。  
+4. **Topics**：在输入框里逐个输入标签后回车；可删除不合适的。  
+5. 需要更全的元数据时：**Settings → General** 里同一套 **Description / Website / Topics** 也会同步思路（部分入口以 About 为准）。
+
+### 还能填的「更多字段」（可选）
+
+| 位置 | 作用 | 建议 |
+|------|------|------|
+| **Repository name** | URL 与品牌 | 已是 `pressure-skill` 类即可，少改 |
+| **About → Description** | GitHub/Google 摘要 | 中英 + **拒绝被压力 / 拒绝 PUA / 边界** 等短语 |
+| **About → Website** | 外链预览 | Demo、文档、或 Releases 页 |
+| **Topics** | GitHub 主题聚合 | 见下方英文标签 + 少量你验证可用的中文（若输入框接受） |
+| **README 标题与首段** | 站外 SEO、站内 code search | 已含中英文检索句 |
+| **Releases 标题与说明** | 版本更新被搜到 | 每条 Release 正文里带 1～2 个核心场景词 |
+| **Discussions（若开启）** | 社区长尾检索 | 置顶帖写清「适用场景」关键词 |
+| **`pyproject.toml` → `[project.urls]`** | PyPI 项目页链接区 | `Homepage` / `Repository` / `Issues`（已指向本仓库） |
+| **`.cursor/.../SKILL.md` 的 `description:`** | Cursor 里 `/` 搜技能 | 已加长，含中英触发词 |
+| **Settings → General → Social preview** | 链接预览卡片图（可选） | 上传含项目名的截图，利于外部分享点击率 |
+
+### Topics（GitHub 标签）建议复制
+
+**英文（Topics 最常用）**：  
+`cursor` `agent-skills` `cursor-agent` `claude-code` `openclaw` `fastapi` `pydantic` `python` `llm` `litellm` `workplace` `communication` `negotiation` `boundaries` `pushback` `say-no` `anti-gaslighting` `difficult-conversations` `soft-rejection` `reply-templates` `zh-cn` `english` `skill` `mvp` `api` `templates` `open-source` `workplace-wellbeing`
+
+**说明**：GitHub Topics 对**非英文、空格、特殊符号**支持不稳定；**「拒绝被压力」「拒绝 PUA」**等请优先写在 **Description 与 README**（本文件已写）。若 Topics 输入框能接受简短中文，可额外加：`职场` `沟通`（以你实际能保存为准）。
+
+### 用 GitHub CLI 批量加 Topics（可选）
+
+在本机已登录 `gh` 时，可在仓库根执行（把 `OWNER/REPO` 换成你的，例如 `Someone-hates-Monday/pressure-skill`）：
+
+```bash
+gh repo edit OWNER/REPO --add-topic cursor --add-topic agent-skills --add-topic fastapi --add-topic workplace --add-topic communication --add-topic boundaries --add-topic pushback --add-topic anti-gaslighting --add-topic negotiation --add-topic llm --add-topic claude-code --add-topic openclaw
+```
+
+其余标签同理追加 `--add-topic <name>`；**Description** 可用：
+
+```bash
+gh repo edit OWNER/REPO --description "拒绝被压力、拒绝职场PUA；催办/模糊需求→得体中英草稿。Cursor Agent Skill + FastAPI；无Key模板。Cold pressure→warm replies."
+```
+
+（若提示超长，缩短到 350 字符内。）
 
 ## License
 

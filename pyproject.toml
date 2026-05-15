@@ -6,6 +6,35 @@ build-backend = "setuptools.build_meta"
 name = "pressure-skill"
 version = "0.1.0"
 description = "沟通画像与压力场景下的得体回复建议（MVP）"
+keywords = [
+  "cursor",
+  "agent-skills",
+  "cursor-skills",
+  "claude-code",
+  "openclaw",
+  "fastapi",
+  "workplace-communication",
+  "negotiation",
+  "communication",
+  "llm",
+  "litellm",
+  "reply-templates",
+  "zh-en",
+  "skill-md",
+  "pressure",
+  "boundaries",
+  "pushback",
+  "say-no",
+  "anti-gaslighting",
+  "gaslighting",
+  "workplace-toxic",
+  "difficult-conversations",
+  "soft-rejection",
+  "deadline-anxiety",
+  "拒绝被压力",
+  "职场边界",
+  "反PUA",
+]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -16,6 +45,11 @@ dependencies = [
   "pydantic>=2.6",
   "python-dotenv>=1.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Someone-hates-Monday/pressure-skill"
+Repository = "https://github.com/Someone-hates-Monday/pressure-skill"
+Issues = "https://github.com/Someone-hates-Monday/pressure-skill/issues"
 
 [project.optional-dependencies]
 llm = ["litellm>=1.40"]

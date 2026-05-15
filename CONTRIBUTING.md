@@ -26,7 +26,7 @@ pytest
 
 - **一个 PR 一件事**：修 bug、加测试、改文档或加小功能分开提，便于 review。
 - **先绿再推**：本地 `pytest` 通过；CI 会在 push / PR 到 `main` 或 `master` 时跑多版本 Python。
-- **技能与向导同步**：若改 `pressure_skill/` 行为或 `readiness` 字段，请同步 **`.cursor/skills/pressure-skill/`** 与 **`.agents/skills/pressure-skill/`** 下的 `SKILL.md`、`references/*.md`；两处应内容一致（或改主技能后运行 `scripts/install_cursor_personal_skill.ps1` / `install_pressure_skill.ps1` 从主技能覆盖副本）。
+- **技能与向导同步**：若改 `pressure_skill/` 行为或 `readiness` 字段，请同步 **`.cursor/skills/pressure-skill/`** 与 **`.agents/skills/pressure-skill/`** 下的 `SKILL.md`、`references/*.md`（含 **`platform-wizard-notes.md`**）；两处应内容一致（或改主技能后运行 `scripts/install_cursor_personal_skill.ps1` / `install_pressure_skill.ps1` 从主技能覆盖副本）。
 - **跨 Agent 安装**：Claude Code / OpenClaw 使用 `scripts/install_pressure_skill.ps1`（或 `.sh`）；说明见 [docs/skill-adapters.md](docs/skill-adapters.md) §5。
 - **脱敏**：Issue / PR 描述、示例里不要贴真实姓名、工号、未公开项目细节。
 

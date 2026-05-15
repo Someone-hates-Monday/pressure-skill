@@ -7,9 +7,9 @@
 - For **option lists** (e.g. relation 1–6, scenarios A–D), you may show **ZH + EN labels on the same line** for clarity, but the conversational prose stays in the working language.  
 - **脚本 `bundle_local.py`**：若用户主要用英文，加上 `--locale en`（或 `--locale auto` 由文本推断）；`readiness.locale` 会标注 `zh`/`en`。
 
-> **加载规则**：用户使用 `/pressure-skill` 或显式挂上本技能后，Agent **必须先读完本文件**再发言（若上下文已含全文可跳过重复 Read）。  
-> **补充加载**：当用户场景含 **高校/科研/学术汇报** 且将选或已选 **C（模糊对齐）** 时，**再 Read** 同目录 `references/domain-artefact-cheatsheet.md`（若存在），用于拆解「写明白」类歧义。  
-> **补充加载**：若已跑 `bundle_local.py` 或你在内部推算 **`readiness.portrait_depth` = `deep`**（或用户粘贴的画像+对话明显很长），**再 Read** `references/evidence-based-reply-memo.md`，用于意图推测与话术的结构化输出。  
+> **加载规则（多平台）**：用户在 **Cursor** 使用 **`/pressure-skill`**，或在 **Claude Code / OpenClaw** 等环境中显式启用 **`pressure-skill`**（以各产品技能列表、命令面板为准）后，Agent **必须先读完本文件**再发言（若上下文已含全文可跳过重复读取）。**安装路径、触发方式、读文件工具名、Python cwd** 见同目录 **`platform-wizard-notes.md`**（建议首读或失败时查阅）。  
+> **补充加载**：当用户场景含 **高校/科研/学术汇报** 且将选或已选 **C（模糊对齐）** 时，**再读取** 同目录 `references/domain-artefact-cheatsheet.md`（若存在），用于拆解「写明白」类歧义。  
+> **补充加载**：若已跑 `bundle_local.py` 或你在内部推算 **`readiness.portrait_depth` = `deep`**（或用户粘贴的画像+对话明显很长），**再读取** `references/evidence-based-reply-memo.md`，用于意图推测与话术的结构化输出。  
 > **禁止**：在 **§4 画像小结经用户确认之前** 进入「场景 + 正文」采集；在 **§5 用户声明目的之前** 给出最终话术定稿（**快速通道 §11** 除外）。  
 > **§10 禁止**：在 **未询问用户「此刻最需要哪类产出」** 之前，用长篇「对方意图推测」占据回复开头（见 **§10** 排序规则）。
 
