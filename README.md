@@ -14,11 +14,11 @@
 > **pressure.skill：我们不煲鸡汤，我们产「能直接发出去」的草稿。**  
 > 给场景 + **沟通画像** → 更得体、可执行的**中英回复建议**（圆滑减量/延期、柔和推人、把模糊话落成可验收说法）。**没 API Key 也能先跑模板**，有 Key 再让 LLM 加码。
 
-结构上借鉴 [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) 的「材料进 → 结构化画像 → 下游能力」：同事类 skill 蒸馏**那个人**，**我们蒸馏「怎么把天聊下去还不背锅」**。独立 **FastAPI** 服务 + **Cursor** 技能 **pressure-skill**（见 `.cursor/skills/pressure-skill/SKILL.md` 或 `.agents/skills/pressure-skill/SKILL.md`）。
+Skill 形态上曾受 [colleague-skill](https://github.com/titanwings/colleague-skill) 等开源 **Agent Skill** 实践的启发（材料结构化后再接能力），**场景与实现与本项目不同**。本仓库提供独立 **FastAPI** 与 **pressure-skill** 技能目录（`.cursor/skills/pressure-skill/`、`.agents/skills/pressure-skill/`）。
 
 **阶段**：**Phase 1 / MVP**（路线图见文末）。Push / PR 到 `main` 或 `master` 时，GitHub Actions 跑 **`pytest`**（[.github/workflows/ci.yml](.github/workflows/ci.yml)）。
 
-[在 Cursor 里试](#在-cursor-里第一次实验) · [起服务](#快速开始) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md)
+[示例与 bundle](#示例与脱敏输出) · [Skill / 多平台安装](#多平台-skillcursor--claude-code--openclaw) · [快速开始](#快速开始) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md)
 
 <!--
 GitHub 仓库 About「Description」可粘贴（任选其一，注意约 350 字符上限）：
@@ -30,24 +30,10 @@ English: Cold pressure → warm, sendable replies. Layered comms playbook + your
 Turn icy deadlines into warm replies—layered workplace comms + your articulate stand-in. Cursor skill + FastAPI; templates first.
 -->
 
-## 在 Cursor 里第一次实验
-
-- **仅本仓库**：已含项目技能 `.cursor/skills/pressure-skill/`。  
-- **所有项目都要用**：在仓库根运行 `.\scripts\install_cursor_personal_skill.ps1`（仅 Cursor + `.agents`），或 `.\scripts\install_pressure_skill.ps1` 一次装到 **Cursor / `.agents` / Claude Code / OpenClaw**；详见 [docs/skill-adapters.md](docs/skill-adapters.md)。
-
-1. 在 Agent 中启用 **`/pressure-skill`**。Agent 会先读取 **`.cursor/skills/pressure-skill/references/wizard-full-flow.md`**，再按该文件**分步提问**（可跳过非必填项），最后给出结构化建议；可选运行 `bundle_local.py` 生成带 `readiness` 的 JSON。
-2. 若只需快速试脚本（无需向导），在终端执行（无需 API Key，模板回退）。若输出乱码，可先 `chcp 65001` 或设置 `PYTHONIOENCODING=utf-8`。
-
-```bash
-py -3 scripts/bundle_local.py --relation manager --use-llm false --locale auto --situation "今天下班前必须交完整版" --vague "详细点，别流水账" --user-purpose "争取缓冲" --user-leverage "并行项目占用主要精力"
-```
-
-- `--locale`：`auto`（按文本推断中/英）、`zh`、`en`。响应里 `readiness.locale` 与模板/LLM 语言一致。
-- 科研/「写明白」类模糊需求可补充：`--discipline-subfield`、`--artefact-preferences`、`--counterparty-seniority`（写入 `CommunicationProfile`，供 `readiness` 与 clarify 模板使用）。
-
-3. 可选：将聊天记录保存为 UTF-8 文本，加上 `--transcript-file path/to/snippet.txt` 以更新启发式画像。
-
 ## 多平台 Skill（Cursor / Claude Code / OpenClaw）
+
+- **Cursor 向导**：本仓库已含 **`.cursor/skills/pressure-skill/`**；在 Cursor Agent 中启用 **`/pressure-skill`**，按 **`references/wizard-full-flow.md`** 分步收集画像与场景（技能入口见同目录 `SKILL.md`）。若要在**任意项目**里使用该技能，在仓库根执行安装脚本（下条）或见 [docs/skill-adapters.md](docs/skill-adapters.md)。  
+- **只想试 CLI、不要向导**：在仓库根运行 **`bundle_local.py`** 的示例命令与参数说明见 **[examples/README.md](examples/README.md)**；终端乱码可设 `PYTHONIOENCODING=utf-8` 或 `chcp 65001`（Windows）。向导内是否调用脚本由 Agent 按 `wizard-full-flow.md` **§8** 判断，不必在 README 重复。
 
 - **完整说明**：[docs/skill-adapters.md](docs/skill-adapters.md)（路径约定、frontmatter 差异、排障）；**脚本索引**：[integrations/README.md](integrations/README.md)。
 - **一键安装（PowerShell，仓库根）**  

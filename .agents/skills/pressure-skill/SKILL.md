@@ -27,7 +27,7 @@ disable-model-invocation: true
 ## 本文件其余内容（快速备忘）
 
 - **隐私**：不默认写入仓库；提醒用户脱敏。  
-- **双路径**：对话内可直接给建议（Cursor 自带模型）；需要结构化 JSON 时在仓库根运行 `py -3 scripts/bundle_local.py ...`（详见向导 §6～§7）。**若技能只装在用户目录**（如 `~/.claude/skills/pressure-skill`），向导仍在该副本的 `references/` 下；**Python 脚本与 API** 必须在 **pressure.skill 仓库克隆根**（含 `scripts/`）执行。
+- **双路径**：对话内可直接给建议（Cursor 自带模型）；**是否**在仓库根跑 `bundle_local.py` **由 Agent 按向导 §8 自行判断**（不向用户问工具名）；若跑，在用户话术里只用自然语言交代「做了信息结构化检查」。**若技能只装在用户目录**（如 `~/.claude/skills/pressure-skill`），向导仍在该副本的 `references/` 下；**Python 脚本**必须在 **pressure.skill 仓库克隆根**（含 `scripts/`）执行。详见向导 **§8～§9**。
 - **readiness**：脚本/API 会输出信息是否够用；向导 **§10** 规定收尾顺序（先问产出优先级 → 再意图推测/话术/风险/追问）。  
 - **工作目录**：运行脚本时 cwd 须为含 `scripts/` 的仓库根。  
 - **多平台 / 安装 / 故障排查**：见 [docs/skill-adapters.md](../../../docs/skill-adapters.md)。  

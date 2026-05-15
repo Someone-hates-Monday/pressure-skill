@@ -14,3 +14,5 @@ eval/cases_casino_labeled.jsonl
 data/*.parquet
 # Ad-hoc eval scratch from local runs
 eval/_*.json
+# Local intake / scratch (e.g. bundle_local transcript paths)
+tmp/
