@@ -57,9 +57,11 @@ def suggest_push(
     user = f"""Profile JSON:\n{profile.model_dump_json(ensure_ascii=False)}\n\nGoal to push:\n{goal}\n\n{evidence_instruction_block(profile, scene_text=goal)}\n\nReturn JSON:
 {{
   "reply_options": ["..."],
+  "reaction_hints": [{{"likely": ["delay","vague_promise"], "unlikely": [], "confidence": "medium", "one_line": "..."}}],
   "rationale": "...",
   "risk_notes": ["..."]
 }}
+reaction_hints length must match reply_options (same tag vocabulary as deflect).
 Write in {lang}. 2-3 options; ~60-140 Chinese characters or similar density in English."""
     raw = complete_json_or_text(SYSTEM, user, temperature=0.35)
     if isinstance(raw, dict) and "reply_options" in raw:

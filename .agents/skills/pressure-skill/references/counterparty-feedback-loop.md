@@ -27,7 +27,7 @@
 
 并从**当轮上下文**回填 **advice_snapshot**：
 
-- `user_purpose`、`predicted_reactions`（你上轮写的预测）、`suggested_reply_text`（用户 adopted 的版本）
+- `user_purpose`、`predicted_reactions`（你上轮写的预测，或 `bundle_local.py --write-advice-snapshot tmp/advice_snapshot.json` 里的 `reaction_hints`）、`suggested_reply_text`（用户 adopted 的版本）
 
 ---
 

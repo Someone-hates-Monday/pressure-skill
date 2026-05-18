@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from pressure_skill.advisor.reaction_hints import attach_reaction_hints
 from pressure_skill.advisor.rerank_weights import active_weights
 from pressure_skill.analyzer.profile import CommunicationProfile, RelationRole
 
@@ -160,12 +161,26 @@ def rerank_reply_options(
     if not ranked:
         return payload
 
+    old_hints = payload.get("reaction_hints")
+    hint_by_text: dict[str, dict] = {}
+    if isinstance(old_hints, list) and isinstance(options, list):
+        for opt, h in zip(options, old_hints):
+            if isinstance(opt, str) and isinstance(h, dict):
+                hint_by_text[opt] = h
+
     ranked.sort(key=lambda x: x[0], reverse=True)
     payload["reply_options"] = [x[1] for x in ranked]
+    if hint_by_text:
+        payload["reaction_hints"] = [hint_by_text.get(x[1]) for x in ranked if hint_by_text.get(x[1])]
     payload["strategy_trace"] = [
         {"score": round(x[0], 3), "reason_tags": x[2], "preview": x[1][:80]} for x in ranked
     ]
-    return payload
+    return attach_reaction_hints(
+        payload,
+        profile=profile,
+        mode=mode,
+        scene_text=scene_text,
+    )
 
 
 __all__ = ["rerank_reply_options", "score_reply_option"]

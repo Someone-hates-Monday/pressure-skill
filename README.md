@@ -80,7 +80,10 @@ uvicorn app:app --reload --port 8765
 
 - `POST /api/v1/profile/from-text`：粘贴少量聊天记录，返回启发式特征 + 可选人工补丁。
 - `POST /api/v1/advice/clap-back`：回怼 / 立边界（低威胁场景，上级默认更克制）。  
-- `POST /api/v1/advice/bundle`：组合场景；`profile` 可带 `counterparty_notes`、`user_leverage_notes`、`extra_context_notes`、`user_purpose`；可选 `clap_back_provocation`；响应含 `readiness`（`warnings`、`portrait_depth`、`evidence_score` 等）。
+- `POST /api/v1/advice/bundle`：组合场景；`profile` 可带 `counterparty_notes`、`user_leverage_notes`、`extra_context_notes`、`user_purpose`；可选 `clap_back_provocation`；响应含 `readiness`，各场景块含 **`reaction_hints`**（与 `reply_options` 一一对应）。
+- **本地画像 API**（`PRESSURE_DATA_DIR`，默认 `counterparties/`）：`GET/POST/PUT /api/v1/counterparties`、`POST .../feedback`、`POST .../ingest-chat`。详见 [docs/phase2-local.md](docs/phase2-local.md)。
+- **Streamlit 档案管理**：`pip install -e ".[ui]"` → `streamlit run streamlit_app.py`。
+- **离线导入聊天**：`py -3 scripts/import_chat_export.py --file 导出.txt --slug <slug>`（微信 txt / 飞书 JSON / 纯文本，无需在线 API）。
 
 ## 示例与脱敏输出
 
@@ -163,7 +166,7 @@ pytest
 ## 路线图（与仓库实现同步迭代）
 
 1. **Phase 1（当前）**：手动 + 半自动画像、三场景 API、无 Key 模板回退。
-2. **Phase 2**：Streamlit 界面、聊天记录解析器（微信/企微/邮件片段）；长期画像已提供 **`counterparties/` + CLI**（MVP），后续可接加密或云端同步。
+2. **Phase 2（本地）**：Streamlit、`reaction_hints`、离线聊天导入、API 本地持久化 — 见 [docs/phase2-local.md](docs/phase2-local.md)。**未做**：飞书/微信 live API、加密云同步。
 3. **Phase 3**：场景标签（行业/文化）、社区策略库、编辑器插件。
 
 ## GitHub 可发现性

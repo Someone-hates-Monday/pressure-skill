@@ -101,6 +101,11 @@ def main() -> None:
         choices=["auto", "zh", "en"],
         help="Output language: auto infers from text; zh/en forces",
     )
+    ap.add_argument(
+        "--write-advice-snapshot",
+        default="",
+        help="Write advice_snapshot JSON for later feedback loop (e.g. tmp/advice_snapshot.json)",
+    )
     args = ap.parse_args()
 
     transcript = _read_text(args.transcript_file or None, args.transcript)
@@ -195,6 +200,41 @@ def main() -> None:
         out["clarify"] = suggest_clarify(args.vague.strip(), profile, use_llm=use_llm)
     if args.clap.strip():
         out["clap_back"] = suggest_clap_back(args.clap.strip(), profile, use_llm=use_llm)
+
+    if args.write_advice_snapshot.strip():
+        snap: dict = {"user_purpose": args.user_purpose.strip() or None, "predicted_reactions": []}
+        opts: list[dict] = []
+        for mode, key in (
+            ("deflect", "deflect"),
+            ("push", "push"),
+            ("clarify", "clarify"),
+            ("clap_back", "clap_back"),
+        ):
+            block = out.get(key)
+            if not isinstance(block, dict):
+                continue
+            for i, text in enumerate(block.get("reply_options") or []):
+                if not isinstance(text, str):
+                    continue
+                hints = block.get("reaction_hints") or []
+                hint = hints[i] if i < len(hints) and isinstance(hints[i], dict) else {}
+                likely = hint.get("likely") or []
+                snap["predicted_reactions"].extend(
+                    [f"{mode}:{t}" for t in likely if isinstance(t, str)]
+                )
+                opts.append(
+                    {
+                        "mode": mode,
+                        "index": i,
+                        "reply_text": text[:500],
+                        "reaction_hint": hint,
+                    }
+                )
+        snap["reply_options_catalog"] = opts
+        Path(args.write_advice_snapshot.strip()).write_text(
+            json.dumps(snap, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
 
     print(json.dumps(out, ensure_ascii=False, indent=2))
 

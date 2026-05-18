@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 
 from pressure_skill.advisor.evidence_tone import evidence_instruction_block
+from pressure_skill.advisor.reaction_hints import attach_clarify_intent_hypotheses
 from pressure_skill.i18n import effective_locale
 from pressure_skill.analyzer.profile import CommunicationProfile
 from pressure_skill.llm_client import complete_json_or_text
@@ -56,7 +57,11 @@ def suggest_clarify(
     if use_llm is False or (
         use_llm is None and not os.getenv("OPENAI_API_KEY") and not os.getenv("ANTHROPIC_API_KEY")
     ):
-        return _fallback_clarify(vague_request, profile, loc)
+        return attach_clarify_intent_hypotheses(
+            _fallback_clarify(vague_request, profile, loc),
+            profile=profile,
+            scene_text=vague_request,
+        )
 
     lang = "English" if loc == "en" else "中文"
     user = f"""Profile JSON:\n{profile.model_dump_json(ensure_ascii=False)}\n\nVague request:\n{vague_request}\n\nUse praise_vs_critique_notes if present. Heavily use discipline_subfield and artefact_preferences_notes when set; if missing, ask questions that split math vs code vs figures vs prose.\n{evidence_instruction_block(profile, scene_text=vague_request)}\n\nReturn JSON:
@@ -68,5 +73,9 @@ def suggest_clarify(
 Write in {lang}."""
     raw = complete_json_or_text(SYSTEM, user, temperature=0.35)
     if isinstance(raw, dict) and "translations" in raw:
-        return raw
-    return _fallback_clarify(vague_request, profile, loc)
+        return attach_clarify_intent_hypotheses(raw, profile=profile, scene_text=vague_request)
+    return attach_clarify_intent_hypotheses(
+        _fallback_clarify(vague_request, profile, loc),
+        profile=profile,
+        scene_text=vague_request,
+    )

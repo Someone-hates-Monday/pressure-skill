@@ -253,9 +253,11 @@ def suggest_deflect(
     user = f"""Profile JSON:\n{profile.model_dump_json(ensure_ascii=False)}\n\nSituation:\n{situation}\n\n{evidence_instruction_block(profile, scene_text=situation)}\n\nReturn JSON:
 {{
   "reply_options": ["..."],
+  "reaction_hints": [{{"likely": ["partial_accept","delay"], "unlikely": ["escalate"], "confidence": "medium", "one_line": "..."}}],
   "rationale": "...",
   "risk_notes": ["..."]
 }}
+reaction_hints length must match reply_options. Tags: accept, partial_accept, delay, vague_promise, escalate, deflect_blame, cold_ignore, push_back, clarify_back.
 Write reply_options/rationale/risk_notes in {lang}. 2-3 options, 80-160 words each if Chinese; similar density if English."""
     raw = complete_json_or_text(SYSTEM, user, temperature=0.4)
     if isinstance(raw, dict) and "reply_options" in raw:

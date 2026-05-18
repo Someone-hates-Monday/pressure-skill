@@ -147,9 +147,11 @@ def suggest_clap_back(
     user = f"""Profile JSON:\n{profile.model_dump_json(ensure_ascii=False)}\n\nAnnoying provocation:\n{provocation}\n\n{evidence_instruction_block(profile, scene_text=provocation)}\n\nReturn JSON:
 {{
   "reply_options": ["..."],
+  "reaction_hints": [{{"likely": ["escalate","cold_ignore"], "unlikely": ["accept"], "confidence": "medium", "one_line": "..."}}],
   "rationale": "...",
   "risk_notes": ["..."]
 }}
+reaction_hints length must match reply_options (tags: accept, partial_accept, delay, vague_promise, escalate, deflect_blame, cold_ignore, push_back, clarify_back).
 Write in {lang}. 2-3 options; be more restrained for manager/client."""
     raw = complete_json_or_text(SYSTEM, user, temperature=0.45)
     if isinstance(raw, dict) and "reply_options" in raw:

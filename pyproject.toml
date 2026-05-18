@@ -53,7 +53,8 @@ Issues = "https://github.com/Someone-hates-Monday/pressure-skill/issues"
 
 [project.optional-dependencies]
 llm = ["litellm>=1.40"]
-dev = ["pytest>=8.0", "httpx>=0.27", "litellm>=1.40"]
+ui = ["streamlit>=1.28"]
+dev = ["pytest>=8.0", "httpx>=0.27", "litellm>=1.40", "streamlit>=1.28"]
 
 [tool.setuptools.packages.find]
 where = ["."]
