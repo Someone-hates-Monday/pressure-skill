@@ -34,6 +34,11 @@ keywords = [
   "拒绝被压力",
   "职场边界",
   "反PUA",
+  "workplace-replies",
+  "sendable-replies",
+  "deadline-pushback",
+  "vague-requirements",
+  "counterparty-profile",
 ]
 readme = "README.md"
 requires-python = ">=3.10"
