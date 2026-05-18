@@ -17,3 +17,5 @@ data/*.parquet
 eval/_*.json
 # Local intake / scratch (e.g. bundle_local transcript paths)
 tmp/
+# Long-term counterparty portraits (local only; do not commit PII)
+counterparties/

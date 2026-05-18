@@ -37,7 +37,7 @@ Turn icy deadlines into warm replies—layered workplace comms + your articulate
 
 ## 多平台 Skill（Cursor / Claude Code / OpenClaw）
 
-**向导**：全平台共用同一份 **`references/wizard-full-flow.md`**（画像 → 目的 → 场景 → 话术）；路径/触发方式/读文件工具/Python 工作目录差异见 **`references/platform-wizard-notes.md`**（与 `SKILL.md` 同技能包）。
+**向导**：全平台共用 **`references/wizard-full-flow.md`**（画像 → 目的 → 场景 → 话术/意图/对方可能反应）；**长期复诊**见 **`references/counterparty-long-term.md`**（本地 `counterparties/` 画像积累）。路径/触发差异见 **`references/platform-wizard-notes.md`**。
 
 - **Cursor**：仓库内 **`.cursor/skills/pressure-skill/`**；Agent 中常用 **`/pressure-skill`**；协议见同目录 **`SKILL.md`**（先读 `wizard-full-flow.md`）。任意项目使用：在仓库根执行安装脚本（下条）或见 [docs/skill-adapters.md](docs/skill-adapters.md) **§0～§1**。  
 - **Claude Code**：安装到 **`~/.claude/skills/pressure-skill/`**（脚本见下）；启用 **pressure-skill** 后 **同一套向导**（先读 `wizard-full-flow.md`）。详见 [docs/skill-adapters.md](docs/skill-adapters.md) **§5**。  
@@ -52,8 +52,9 @@ Turn icy deadlines into warm replies—layered workplace comms + your articulate
 - **macOS / Linux**：`bash scripts/install_pressure_skill.sh`（可选参数 `cursor` `agents` `claude` `openclaw` 或 `all`）。
 - **说明**：各 Agent 里对话用的模型由**该产品**决定（例如 Cursor 里选中的模型）；本仓库 Python / `bundle_local.py` / `uvicorn` 仍在 **克隆下来的仓库根**执行（技能目录里只有 Markdown 向导，不含 `scripts/`）。仅当希望 **`bundle_local.py` 在本机调 API** 时，才需要配置 `.env` 与 `litellm`。
 
-## 隐私
-- 默认不持久化原始对话；API 仅处理请求体中的文本。
+## 隐私与长期画像
+- **API / 单次对话**：默认不持久化原始对话；请求体仅在当次处理。
+- **长期对象（可选）**：经你同意后，Agent 可将脱敏后的**对方画像**合并保存到仓库根 **`counterparties/{slug}/`**（本地目录，已在 `.gitignore`，勿提交真实人名与聊天）。用于**复诊**：每次新情况仍走目的+场景分析，并可持续追加聊天记录、纠正与结果反馈。CLI：`py -3 scripts/counterparty_cli.py list|show|save|episode|correction`；协议见技能内 `references/counterparty-long-term.md`。
 - 未配置任何 API Key 时走**本地模板**回退，便于离线演示。
 - 若自行接入云端 LLM，请在部署说明中告知用户数据出境与留存策略。
 
@@ -160,7 +161,7 @@ pytest
 ## 路线图（与仓库实现同步迭代）
 
 1. **Phase 1（当前）**：手动 + 半自动画像、三场景 API、无 Key 模板回退。
-2. **Phase 2**：Streamlit 界面、聊天记录解析器（微信/企微/邮件片段）、SQLite 仅存摘要特征。
+2. **Phase 2**：Streamlit 界面、聊天记录解析器（微信/企微/邮件片段）；长期画像已提供 **`counterparties/` + CLI**（MVP），后续可接加密或云端同步。
 3. **Phase 3**：场景标签（行业/文化）、社区策略库、编辑器插件。
 
 ## GitHub 可发现性

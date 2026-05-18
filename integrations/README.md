@@ -13,3 +13,5 @@
 | `scripts/install_pressure_skill.sh` | macOS / Linux，同上逻辑 |
 
 详见 [docs/skill-adapters.md](../docs/skill-adapters.md)。
+
+长期对方画像（复诊）：`scripts/counterparty_cli.py`；说明见 `.cursor/skills/pressure-skill/references/counterparty-long-term.md`。
