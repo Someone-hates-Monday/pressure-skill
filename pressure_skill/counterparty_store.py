@@ -164,12 +164,20 @@ def load_counterparty(
     cp = _corrections_path(root)
     if cp.is_file():
         corrections = cp.read_text(encoding="utf-8")
+    outcomes: list[dict[str, Any]] = []
+    op = root / "outcomes.jsonl"
+    if op.is_file():
+        for line in op.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                outcomes.append(json.loads(line))
     return {
         "slug": slug,
         "meta": meta,
         "profile": profile,
         "profile_dict": profile.model_dump(mode="json"),
         "episodes": episodes,
+        "outcomes": outcomes,
         "corrections": corrections,
     }
 

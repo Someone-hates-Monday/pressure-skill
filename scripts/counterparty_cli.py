@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from pressure_skill.analyzer.profile import CommunicationProfile
+from pressure_skill.counterparty_feedback import record_outcome_feedback
 from pressure_skill.counterparty_store import (
     append_correction,
     append_episode,
@@ -57,6 +58,22 @@ def main() -> None:
         choices=["portrait", "leverage", "context", "pattern", "other"],
     )
 
+    p_fb = sub.add_parser(
+        "feedback",
+        help="Record real-world outcome after user sent advice; calibrate portrait",
+    )
+    p_fb.add_argument("--slug", required=True)
+    p_fb.add_argument(
+        "--feedback-file",
+        required=True,
+        help="JSON: advice_snapshot, field_report, deviation_summary, learned_rules, profile_updates, ...",
+    )
+    p_fb.add_argument(
+        "--no-apply-profile",
+        action="store_true",
+        help="Only append outcomes.jsonl; do not merge profile_updates",
+    )
+
     args = ap.parse_args()
 
     if args.cmd == "list":
@@ -71,6 +88,7 @@ def main() -> None:
             "meta": data["meta"],
             "profile": data["profile_dict"],
             "episodes": data["episodes"][-10:],
+            "outcomes": (data.get("outcomes") or [])[-5:],
             "corrections_preview": (data["corrections"] or "")[:2000],
         }
         print(json.dumps(out, ensure_ascii=False, indent=2))
@@ -114,6 +132,17 @@ def main() -> None:
     if args.cmd == "correction":
         append_correction(args.base_dir, args.slug, args.text, category=args.category)
         print(json.dumps({"ok": True, "slug": args.slug}, ensure_ascii=False))
+        return
+
+    if args.cmd == "feedback":
+        raw = json.loads(Path(args.feedback_file).read_text(encoding="utf-8"))
+        result = record_outcome_feedback(
+            args.base_dir,
+            args.slug,
+            raw,
+            apply_profile=not args.no_apply_profile,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2))
         return
 
 

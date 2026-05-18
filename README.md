@@ -54,7 +54,9 @@ Turn icy deadlines into warm replies—layered workplace comms + your articulate
 
 ## 隐私与长期画像
 - **API / 单次对话**：默认不持久化原始对话；请求体仅在当次处理。
-- **长期对象（可选）**：经你同意后，Agent 可将脱敏后的**对方画像**合并保存到仓库根 **`counterparties/{slug}/`**（本地目录，已在 `.gitignore`，勿提交真实人名与聊天）。用于**复诊**：每次新情况仍走目的+场景分析，并可持续追加聊天记录、纠正与结果反馈。CLI：`py -3 scripts/counterparty_cli.py list|show|save|episode|correction`；协议见技能内 `references/counterparty-long-term.md`。
+- **长期对象（可选）**：经你同意后，Agent 可将脱敏后的**对方画像**合并保存到仓库根 **`counterparties/{slug}/`**（本地目录，已在 `.gitignore`，勿提交真实人名与聊天）。用于**复诊**：每次新情况仍走目的+场景分析，并可持续追加聊天记录、纠正与结果反馈。  
+- **实地反馈闭环**：你把建议**真发出去**后，把对方回复、真实反应、以及「问清模糊话」后的含义带回；Agent 对照上轮预测写偏差，运行 `py -3 scripts/counterparty_cli.py feedback --slug … --feedback-file …` 写入 **`outcomes.jsonl`** 并合并进画像（`[实测校准]`）。模板：`examples/feedback-outcome-template.json`；协议：`references/counterparty-feedback-loop.md`。  
+- CLI：`py -3 scripts/counterparty_cli.py list|show|save|episode|correction|feedback`。
 - 未配置任何 API Key 时走**本地模板**回退，便于离线演示。
 - 若自行接入云端 LLM，请在部署说明中告知用户数据出境与留存策略。
 

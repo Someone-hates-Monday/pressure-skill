@@ -26,7 +26,8 @@
 |------|------|
 | `meta.json` | 显示名、slug、创建/更新时间、会话次数 |
 | `profile.json` | 可合并的画像字段（关系、侧写、筹码、场外、pattern 等） |
-| `episodes.jsonl` | 每行一次「会诊」：目的、场景、摘要、结果、有用度、备注 |
+| `episodes.jsonl` | 每行一次「会诊」或 `kind=outcome_feedback` |
+| `outcomes.jsonl` | **实地反馈**：已发送话术、对方真实回复、预测偏差、learned_rules |
 | `corrections.md` | 用户纠正（「他不会这样」「其实更吃软」） |
 
 ---
@@ -78,9 +79,18 @@
 2. 把纠正**改写进** `counterparty_notes` 或对应字段，再 `save` 合并。  
 3. **category** 可选：`portrait` | `leverage` | `context` | `pattern` | `other`。
 
-### 5C. 反馈话术效果
+### 5C. 反馈话术效果（简单）
 
-用户说 **哪条发了、对方反应** → 写入 **episode** 的 `outcome` / `note`；若改变对对方的判断，同时 **correction** 或更新 `counterparty_notes`。
+用户仅口头说 **发了、对方怎样** 且不愿结构化 → 可只写 **episode** 的 `outcome` / `note` + **correction**。
+
+### 5D. 实地反馈闭环（推荐：发出去之后）
+
+用户带回**真实对话 + 对方反应 + 澄清模糊话后的含义** → **必须 Read** `references/counterparty-feedback-loop.md`，按其中步骤：
+
+1. 对照上轮 **预测反应** vs **实际**；写 `deviation_summary` 与 `learned_rules`。  
+2. 填 `tmp/feedback_outcome.json`（模板见 `examples/feedback-outcome-template.json`）。  
+3. 运行 `counterparty_cli.py feedback --slug …` **合并进 profile**（生成 `[实测校准]` 块）。  
+4. 下次复诊 **优先引用** `outcomes` 与校准块。
 
 ---
 
@@ -88,7 +98,7 @@
 
 有长期画像时，§10.1 的 **对方意图推测** 必须：
 
-- **优先引用** `profile.json`、`corrections.md`、最近 episode 中的**具体事实**；  
+- **优先引用** `profile.json`、`corrections.md`、**最近 `outcomes`（实地反馈）**、最近 episode 中的**具体事实**；  
 - 对**模糊话**给出 **2～4 条互斥解读** + 相对可能性（与主向导 §10.1 一致）；  
 - 对**各条回复建议**，简要标注 **对方可能反应**（接受 / 拖延 / 升级 / 甩锅）— 各 1 句即可，不必写剧本；  
 - 若长期档案与本轮新事实冲突，**以本轮为准**并建议更新档案。
@@ -113,4 +123,5 @@ py -3 scripts/counterparty_cli.py show --slug <slug>
 py -3 scripts/counterparty_cli.py save --slug <slug> --name "<显示名>" --profile-file <path>
 py -3 scripts/counterparty_cli.py episode --slug <slug> --purpose "..." --scenes "deflect" --summary "..."
 py -3 scripts/counterparty_cli.py correction --slug <slug> --text "..." --category portrait
+py -3 scripts/counterparty_cli.py feedback --slug <slug> --feedback-file tmp/feedback_outcome.json
 ```

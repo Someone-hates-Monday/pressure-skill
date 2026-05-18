@@ -1,0 +1,30 @@
+{
+  "advice_snapshot": {
+    "user_purpose": "争取延期两天",
+    "predicted_reactions": ["拖延确认", "口头答应但不变更排期"],
+    "suggested_reply_index": 1,
+    "suggested_reply_text": "（Agent 填入上轮建议中用户选用或改写后的那一版，脱敏）"
+  },
+  "field_report": {
+    "sent_message": "（用户实际发出去的原话，脱敏）",
+    "counterparty_reply": "（对方真实回复，脱敏）",
+    "follow_up_thread": "（可选：后续几轮真实对话摘录）",
+    "vague_probe": "（若用户按建议去澄清模糊话，填入问法）",
+    "vague_probe_reply": "（对方澄清后的真实含义）",
+    "actual_reaction_tags": ["escalated", "cc_boss"],
+    "prediction_match": "partial",
+    "situation_summary": "（可选：一句话场景）"
+  },
+  "deviation_summary": "（Agent 写：预测哪条对了/哪条错了，对方真实在保护什么）",
+  "learned_rules": [
+    "（可执行规则 1：例如：提到具体 deadline 时会抄送上级）",
+    "（规则 2）"
+  ],
+  "profile_updates": {
+    "counterparty_notes": "（可选：直接写入画像的补充句，会与自动校准块合并）"
+  },
+  "pattern_tags_add": ["escalates_on_named_deadline"],
+  "corrections": [
+    { "category": "pattern", "text": "（例如：不会对平级用「尽快」表示同意）" }
+  ]
+}

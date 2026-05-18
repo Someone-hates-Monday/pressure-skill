@@ -23,6 +23,7 @@ disable-model-invocation: true
 3. **若读取失败**（工作区未含该路径、或沙箱无法读盘）：请用户 **将 pressure.skill 仓库克隆根打开为工作区**、提供 `wizard-full-flow.md` 的磁盘路径，或 **将 `wizard-full-flow.md` 全文粘贴进对话**；在取得流程前 **不要编造**向导步骤。
 4. **读完主向导后**：**严格按 `wizard-full-flow.md` 章节顺序**与用户多轮对话；除「快速通道」外，**禁止**在 **画像小结（§4）经用户确认前** 采集场景 A/B/C/D，**禁止**在 **用户声明目的（§5）前** 输出最终可发送话术定稿。  
 5. **长期对象（复诊）**：用户要继续跟踪**同一位对方**、追加材料或反馈时，**再 Read** `<skill-root>/references/counterparty-long-term.md`；经用户同意后用仓库根 `scripts/counterparty_cli.py` 读写本地 `counterparties/`（默认不进 Git）。复诊时**仍须**每轮采集 **§5 目的** 与 **§6～7 新场景**。  
+5b. **实地反馈（发出去之后）**：用户带回真实对话与对方反应、或澄清了模糊话的真义时，**再 Read** `<skill-root>/references/counterparty-feedback-loop.md`，对照上轮预测写偏差与 `learned_rules`，执行 `counterparty_cli.py feedback` 校准画像，使**下次**意图推测与话术更准。  
 6. **收尾顺序**：遵循向导 **§10**——先问用户此刻最需要哪类产出并置顶作答，再写意图推测、**多假设意图**、**话术及对方可能反应**；科研/模糊对齐场景可按向导加载 `domain-artefact-cheatsheet.md`；**深证据**（`readiness.portrait_depth` = `deep`）时按向导加载 `evidence-based-reply-memo.md`。  
 7. **语言**：遵循 `wizard-full-flow.md` 中的 **Language / 语言** 规则（中英一致）。
 
