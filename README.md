@@ -23,7 +23,7 @@
 
 **检索**：`pressure-skill` · Cursor `agent-skills` · `claude-code` · `openclaw` · 职场沟通 · **拒绝被压力** · **拒绝职场 PUA** · **反催办** · **软拒绝** · **立边界** · 催办回复 · 模糊需求对齐 · `fastapi` · 中英回复草稿
 
-[多平台 Skill](#多平台-skillcursor--claude-code--openclaw) · [隐私与长期画像](#隐私与长期画像) · [示例](#示例与脱敏输出) · [API 与 CLI](#api-与-cli可选) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md) · [路线图](#路线图与仓库实现同步迭代) · [GitHub 可发现性](#github-可发现性)
+[如何验证效果](#如何验证效果) · [多平台 Skill](#多平台-skillcursor--claude-code--openclaw) · [隐私与长期画像](#隐私与长期画像) · [示例与演示](#示例与脱敏输出) · [API 与 CLI](#api-与-cli可选) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md) · [路线图](#路线图与仓库实现同步迭代) · [GitHub 可发现性](#github-可发现性)
 
 <!--
 GitHub 仓库 About「Description」可粘贴（任选其一，约 350 字符上限）：
@@ -98,6 +98,22 @@ py -3 scripts/bundle_local.py --relation manager --user-purpose "争取延期" -
 
 ---
 
+## 如何验证效果
+
+本项目**不**用「像不像某个人」或单一准确率来证明自己，而用你可核对的结果：
+
+| 你怎么看 | 在哪里体现 |
+|----------|------------|
+| **能直接发送** | `reply_options` 是消息体，不是长篇建议 |
+| **信息不够会先说不瞎编** | `readiness.missing_fields`、`evidence_score` |
+| **对方可能怎么回** | `reaction_hints`（`likely` / `one_line`） |
+| **发完后能越用越准** | `counterparty_cli.py feedback` + 本地档案 |
+
+**拍视频 / 写推文**：固定案例 [examples/demo-scenario-manager-deadline.md](examples/demo-scenario-manager-deadline.md)、裸问对比 [examples/raw-agent-baseline-prompt.md](examples/raw-agent-baseline-prompt.md)、分镜 [examples/video-shot-list.md](examples/video-shot-list.md)。  
+**完整说明**：[docs/demo-and-trust.md](docs/demo-and-trust.md)。欢迎 [使用反馈 Issue](https://github.com/Someone-hates-Monday/pressure-skill/issues/new?template=user-feedback.yml)（脱敏）。
+
+---
+
 ## 多平台 Skill（Cursor / Claude Code / OpenClaw）
 
 **向导**：全平台共用 `references/wizard-full-flow.md`（画像 → 目的 → 场景 → 话术 / 意图 / `reaction_hints`）；**长期复诊**见 `counterparty-long-term.md`；平台差异见 `platform-wizard-notes.md`。
@@ -134,7 +150,7 @@ uvicorn app:app --reload --port 8765
 
 ## 示例与脱敏输出
 
-见 **[examples/README.md](examples/README.md)**（`bundle_local.py` 对照命令与示意 JSON）。
+见 **[examples/README.md](examples/README.md)**（对比演示、含 `reaction_hints` 的 JSON、`refresh_demo_samples.py`）。
 
 ---
 

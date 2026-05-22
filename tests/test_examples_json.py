@@ -16,3 +16,8 @@ def test_examples_json_are_valid():
         assert r["portrait_depth"] in ("minimal", "standard", "deep")
         assert "evidence_score" in r
         assert "portrait_depth_hint" in r
+        hints = data["deflect"].get("reaction_hints") or []
+        opts = data["deflect"].get("reply_options") or []
+        if hints:
+            assert len(hints) == len(opts)
+            assert "one_line" in hints[0]

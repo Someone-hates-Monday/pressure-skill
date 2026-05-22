@@ -1,4 +1,4 @@
-﻿{
+{
   "profile": {
     "relation": "manager",
     "scene_tags": [],
@@ -40,12 +40,55 @@
   },
   "deflect": {
     "reply_options": [
-      "收到。为确保质量，我想和您对齐一下优先级：我手头还有 A、B 两项在本周截止。这份材料您更希望我先保证哪部分的深度？其余部分我可以在周五前给出框架，下周一补齐细节，您看是否可行？",
-      "明白您的节点。按上次类似交付的经验，完整版大约需要 X 天。如果本周五前必须给到一版，我建议先交付核心数据与结论，附录与排版我放到下周二，这样风险更可控。"
+      "我建议先把验收范围定清楚：本轮先完成主流程与关键指标，次要项放到下一迭代。这样今天可以给您可验收版本，后续再按优先级补齐。",
+      "我理解您希望在今天下班前完成 完整版。为了稳住结果，我建议先交可验收主干，剩余细节分到下一时段；当前约束是 质量与稳定性要求，不建议硬压到一次性交付。",
+      "收到。为了保证您要的结果可落地，我建议先对齐范围和优先级：今天先交决策所需核心内容，周一补全细节与附件，并附上风险说明，您看这样是否更稳妥？"
     ],
     "rationale": "关系=manager：用“优先级对齐 + 分阶段交付”替代单纯拒绝，降低对抗感。",
     "risk_notes": [
       "若对方极度厌恶讨价还价，可缩短为单句承诺 + 一个具体时间点。"
+    ],
+    "reaction_hints": [
+      {
+        "likely": [
+          "clarify_back",
+          "vague_promise",
+          "escalate"
+        ],
+        "unlikely": [
+          "cold_ignore",
+          "accept"
+        ],
+        "confidence": "medium",
+        "one_line": "较可能：反问澄清 / 模糊答应；较低可能：冷处理。"
+      },
+      {
+        "likely": [
+          "clarify_back",
+          "vague_promise",
+          "escalate"
+        ],
+        "unlikely": [
+          "cold_ignore",
+          "accept"
+        ],
+        "confidence": "medium",
+        "one_line": "较可能：反问澄清 / 模糊答应；较低可能：冷处理。"
+      },
+      {
+        "likely": [
+          "clarify_back",
+          "vague_promise",
+          "accept",
+          "escalate"
+        ],
+        "unlikely": [
+          "cold_ignore",
+          "accept"
+        ],
+        "confidence": "medium",
+        "one_line": "较可能：反问澄清 / 模糊答应；较低可能：冷处理。"
+      }
     ]
   }
 }

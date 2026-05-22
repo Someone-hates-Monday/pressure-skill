@@ -1,0 +1,67 @@
+name: 使用反馈（实地结果）
+description: 你发出建议稿之后，对方怎么回？预测准不准？帮助我们改进画像与 reaction_hints。
+title: "[反馈] "
+labels: ["user-feedback"]
+body:
+  - type: markdown
+    value: |
+      **请脱敏**（无真名、工号、未公开项目）。反馈会用于改进产品叙事与示例，不会自动上传你的本地 `counterparties/`。
+      也可在仓库根用 CLI：`py -3 scripts/counterparty_cli.py feedback --slug <slug> --feedback-file ...`
+  - type: dropdown
+    id: sent
+    attributes:
+      label: 你是否发送了 Skill 给出的某条建议？
+      options:
+        - 已发送（基本未改）
+        - 已发送（改写后发送）
+        - 未发送
+        - 仅试用向导
+    validations:
+      required: true
+  - type: dropdown
+    id: prediction_match
+    attributes:
+      label: reaction_hints / 意图推测 与实际情况
+      options:
+        - 很准 (right)
+        - 部分准 (partial)
+        - 偏差大 (wrong)
+        - 未关注预测
+        - 未使用 Skill
+  - type: textarea
+    id: counterparty_reply
+    attributes:
+      label: 对方实际回复（脱敏）
+      placeholder: "对方原话…"
+  - type: textarea
+    id: your_message
+    attributes:
+      label: 你实际发送的内容（脱敏）
+      placeholder: "你发出去的那条…"
+  - type: dropdown
+    id: usefulness
+    attributes:
+      label: 主观有用度（1-5）
+      options:
+        - "5"
+        - "4"
+        - "3"
+        - "2"
+        - "1"
+  - type: textarea
+    id: scene
+    attributes:
+      label: 场景简述
+      placeholder: "上级催交付 / 客户模糊需求 / …"
+  - type: textarea
+    id: learned
+    attributes:
+      label: 你希望 Skill 下次记住的一点（可选）
+      placeholder: "例如：他一听到具体日期就会抄送总监…"
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: 同意
+      options:
+        - label: 同意在 README/视频案例中匿名引用本反馈（会再脱敏）
+          required: false
