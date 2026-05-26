@@ -23,14 +23,7 @@
 
 **检索**：`pressure-skill` · Cursor `agent-skills` · `claude-code` · `openclaw` · 职场沟通 · **拒绝被压力** · **拒绝职场 PUA** · **反催办** · **软拒绝** · **立边界** · 催办回复 · 模糊需求对齐 · `fastapi` · 中英回复草稿
 
-[如何验证效果](#如何验证效果) · [多平台 Skill](#多平台-skillcursor--claude-code--openclaw) · [隐私与长期画像](#隐私与长期画像) · [示例与演示](#示例与脱敏输出) · [API 与 CLI](#api-与-cli可选) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md) · [路线图](#路线图与仓库实现同步迭代) · [GitHub 可发现性](#github-可发现性)
-
-<!--
-GitHub 仓库 About「Description」可粘贴（任选其一，约 350 字符上限）：
-
-中文（含检索向）：拒绝被压力、拒绝职场 PUA；催办/模糊需求/不接锅 → 得体中英草稿。Cursor Agent Skill + FastAPI；无 Key 先跑模板。
-English (searchy): Pushback, boundaries, anti-gaslighting—sendable ZH/EN workplace replies. Cursor skill + FastAPI; offline templates.
--->
+[如何验证效果](#如何验证效果) · [Nexent / 训练营提交](#nexent--训练营智能体形态) · [多平台 Skill](#多平台-skillcursor--claude-code--openclaw) · [隐私与长期画像](#隐私与长期画像) · [示例与演示](#示例与脱敏输出) · [API 与 CLI](#api-与-cli可选) · [评测与训练](#本地评测避免只靠感觉) · [贡献](CONTRIBUTING.md) · [路线图](#路线图与仓库实现同步迭代)
 
 ## Quickstart
 
@@ -114,6 +107,20 @@ py -3 scripts/bundle_local.py --relation manager --user-purpose "争取延期" -
 
 ---
 
+## Nexent / 训练营智能体形态
+
+参加 [ModelEngine Nexent](https://github.com/ModelEngine-Group/nexent/discussions)（**重庆大学 AI 训练营** 等共用该讨论区）时，**提交用智能体**与 **Cursor Skill** 分开维护：
+
+| 形态 | 目录 |
+|------|------|
+| Nexent 零代码智能体 + 发帖模板 | **[nexent-camp/](nexent-camp/README.md)** |
+| 符合度自检（对照同学作品） | [nexent-camp/COMPLIANCE.md](nexent-camp/COMPLIANCE.md) |
+| Discussions 正文模板 | [nexent-camp/SUBMISSION-DISCUSSION.md](nexent-camp/SUBMISSION-DISCUSSION.md) |
+
+平台文档：[Nexent 概览](https://modelengine-group.github.io/nexent/zh/getting-started/overview.html)。可选生态：[ModelScope MCP](https://modelscope.cn/mcp)、[Exa](https://exa.ai/)、Datamate（见 `nexent-camp/agent/tools-setup.md`）。
+
+---
+
 ## 多平台 Skill（Cursor / Claude Code / OpenClaw）
 
 **向导**：全平台共用 `references/wizard-full-flow.md`（画像 → 目的 → 场景 → 话术 / 意图 / `reaction_hints`）；**长期复诊**见 `counterparty-long-term.md`；平台差异见 `platform-wizard-notes.md`。
@@ -194,24 +201,6 @@ pytest
 1. **Phase 1**：半自动画像、多场景 API、无 Key 模板。  
 2. **Phase 2（本地）**：Streamlit、`reaction_hints`、离线聊天导入、API 本地持久化 — [docs/phase2-local.md](docs/phase2-local.md)。**未做**：飞书/微信 live API、加密云同步。  
 3. **Phase 3**：行业/文化场景标签、社区策略库、编辑器插件。
-
----
-
-## GitHub 可发现性
-
-GitHub **Topics** 以英文为主；中文检索向（**拒绝被压力**、**拒绝职场 PUA**、**反催办**、**软拒绝**、**立边界**）请写在 **About → Description** 与本 README 首段。
-
-### Topics 建议复制
-
-`cursor` `agent-skills` `cursor-agent` `claude-code` `openclaw` `fastapi` `workplace` `communication` `negotiation` `boundaries` `pushback` `say-no` `anti-gaslighting` `difficult-conversations` `soft-rejection` `reply-templates` `zh-cn` `skill` `python` `llm` `templates` `open-source` `workplace-wellbeing`
-
-### 设置步骤
-
-1. 仓库 **About → ⚙️** → **Description**：粘贴上文 HTML 注释中的「含检索向」文案。  
-2. **Topics**：逐个添加上列标签。  
-3. 可选：`gh repo edit OWNER/REPO --add-topic cursor --add-topic agent-skills …`（见历史文档或自行追加）。
-
-`pyproject.toml` 的 `[project] keywords` 与 `.cursor/skills/pressure-skill/SKILL.md` 的 `description` 供 PyPI / Cursor 技能搜索使用。
 
 ---
 
